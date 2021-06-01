@@ -23,6 +23,14 @@ AIDiagonalMatrix class >> withDiagonal: vector [
 	^newMatrix
 ]
 
+{ #category : #arithmetic }
+AIDiagonalMatrix >> * aMatrixOrNumber [
+	
+			
+	
+	^ aMatrixOrNumber productFromDiagonalMatrix: self.
+]
+
 { #category : #accessing }
 AIDiagonalMatrix >> at: row and: column [
 	

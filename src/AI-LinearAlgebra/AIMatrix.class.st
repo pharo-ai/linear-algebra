@@ -744,6 +744,15 @@ AIMatrix >> printOn: aStream [
 ]
 
 { #category : #'double dispatching' }
+AIMatrix >> productFromDiagonalMatrix: aDiagonalMatrix [
+	
+	  1 to: aDiagonalMatrix rowSize do: [:i|
+		aDiagonalMatrix at: i and: i put: (aDiagonalMatrix at:i and: i)*(self at: i and: i ) ].
+
+	  ^aDiagonalMatrix 
+]
+
+{ #category : #'double dispatching' }
 AIMatrix >> productFromDouble: aNumber [
 	
 	^self productFromNumber: aNumber
