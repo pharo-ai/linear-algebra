@@ -12,6 +12,18 @@ Class {
 }
 
 { #category : #accessing }
+AILeastSquares >> matrixA: aMatrix [
+
+	matrixA := aMatrix
+]
+
+{ #category : #accessing }
+AILeastSquares >> matrixB: aMatrix [
+
+	matrixB := aMatrix
+]
+
+{ #category : #accessing }
 AILeastSquares >> rank [
 
 	^ rank
