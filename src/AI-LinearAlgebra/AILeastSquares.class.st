@@ -56,10 +56,10 @@ AILeastSquares >> solve [
 	
 	lapack solve.
 	
-	solution := AIMatrix
+	solution := (AIMatrix
 		values: lapack minimumNormSolution
-		rows: matrixA numberOfColumns
-		columns: matrixB numberOfColumns.
+		rows: matrixB numberOfColumns
+		columns: matrixA numberOfColumns) transposed.
 		
 	singularValues := lapack singularValues.
 	rank := lapack rank.
