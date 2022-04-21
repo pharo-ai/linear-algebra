@@ -40,9 +40,7 @@ matrixB := #(
 	(7.30   0.47  -6.28)
 	(1.33   6.58  -3.42)
 	(2.68  -1.71   3.46)
-	(-9.62  -0.79   0.41)) asAIMatrix.
-	
-AILeastSquaresFixtureSmallOneSolution new.	
+	(-9.62  -0.79   0.41)) asAIMatrix.	
 	
 algo := AILeastSquares new
 	matrixA: matrixA;
