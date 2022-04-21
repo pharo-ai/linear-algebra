@@ -8,7 +8,7 @@ Class {
 AILeastSquaresTest >> testSolutionIntelFortranExample [
 
 	| fixture algo |
-	fixture := AILeastSquaresFixtureSmallOneSolution new.
+	fixture := AILeastSquaresFixtureIntelFortran new.
 	
 	algo := AILeastSquares new
 		matrixA: fixture matrixA;
