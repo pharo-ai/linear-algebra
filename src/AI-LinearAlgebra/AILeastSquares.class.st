@@ -49,7 +49,7 @@ AILeastSquares >> solve [
 	lapack := LapackDgelsd new
 		numberOfRows: matrixA size;
 		numberOfColumns: matrixA first size;
-		numberOfRightHandSides: matrixB first size;
+		numberOfRightHandSides: matrixB size;
 		matrixA: matrixA flattened;
 		matrixB: matrixB flattened;
 		yourself.
