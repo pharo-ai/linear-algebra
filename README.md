@@ -27,7 +27,7 @@ spec
   with: [ spec repository: 'github://pharo-ai/linear-algebra/src' ].
 ```
 
-## Linear regression
+## How to use it
 
 ```st
 matrixA := #(
