@@ -47,16 +47,20 @@ AILeastSquares >> solve [
 	| lapack |
 	
 	lapack := LapackDgelsd new
-		numberOfRows: matrixA size;
-		numberOfColumns: matrixA first size;
-		numberOfRightHandSides: matrixB size;
+		numberOfRows: matrixA numberOfRows;
+		numberOfColumns: matrixA numberOfColumns;
+		numberOfRightHandSides: matrixB numberOfRows;
 		matrixA: matrixA flattened;
 		matrixB: matrixB flattened;
 		yourself.
 	
 	lapack solve.
 	
-	solution := lapack minimumNormSolution.
+	solution := AIMatrix
+		values: lapack minimumNormSolution
+		rows: matrixA numberOfColumns
+		columns: matrixB numberOfRows.
+		
 	singularValues := lapack singularValues.
 	rank := lapack rank.
 ]
