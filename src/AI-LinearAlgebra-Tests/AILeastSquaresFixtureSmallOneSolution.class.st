@@ -8,11 +8,6 @@ Class {
 }
 
 { #category : #initialization }
-AILeastSquaresFixtureSmallOneSolution >> initialize [ 
-	super initialize.
-]
-
-{ #category : #initialization }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixA [
 
 	matrixA := #(
