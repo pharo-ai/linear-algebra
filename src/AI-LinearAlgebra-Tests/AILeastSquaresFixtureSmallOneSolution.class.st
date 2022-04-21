@@ -1,3 +1,6 @@
+"
+Small example of least squares system (AX = B) with one solution taken from here: https://textbooks.math.gatech.edu/ila/least-squares.html
+"
 Class {
 	#name : #AILeastSquaresFixtureSmallOneSolution,
 	#superclass : #AILeastSquaresFixture,
