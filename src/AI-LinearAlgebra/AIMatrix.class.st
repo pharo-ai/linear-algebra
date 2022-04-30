@@ -33,6 +33,18 @@ AIMatrix class >> values: aCollection rows: aNumberOfRows columns: aNumberOfColu
 	^ self rows: rows.
 ]
 
+{ #category : #accessing }
+AIMatrix >> at: rowIndex at: columnIndex [
+
+	^ (self at: rowIndex) at: columnIndex
+]
+
+{ #category : #accessing }
+AIMatrix >> at: rowIndex at: columnIndex put: aValue [
+
+	^ (self at: rowIndex) at: columnIndex put: aValue
+]
+
 { #category : #initialization }
 AIMatrix >> initializeRows: aCollectionOfCollections [
 
@@ -55,8 +67,14 @@ AIMatrix >> numberOfRows [
 { #category : #'point functions' }
 AIMatrix >> transposed [
 
-	^ self class rows: (
-		(1 to: self numberOfColumns) collect: [ :j |
-			(1 to: self numberOfRows) collect: [ :i |
-			 	(self at: i) at: j ] ])
+	| newMatrix |
+	newMatrix := self class new: self numberOfColumns.
+
+	(1 to: self numberOfColumns) do: [ :j | 
+		newMatrix at: j put: (Array new: self numberOfRows).
+
+		(1 to: self numberOfRows) do: [ :i | 
+			newMatrix at: j at: i put: (self at: i at: j) ] ].
+	
+	^ newMatrix
 ]
