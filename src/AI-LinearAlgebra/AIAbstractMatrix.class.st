@@ -14,13 +14,11 @@ AIAbstractMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 { #category : #'as yet unclassified' }
 AIAbstractMatrix class >> rows: rowMajorNonFlattenedMatrix [
 
-	| flattenedFloatArray |
-	flattenedFloatArray := Float64Array streamContents: [ :stream |
-		(AIMatrix rows: rowMajorNonFlattenedMatrix) transposed flattenOn: stream ].
-	^ self
-		values: flattenedFloatArray
-		rows: rowMajorNonFlattenedMatrix size
-		columns: rowMajorNonFlattenedMatrix first size
+	^ (self
+		   newRows: rowMajorNonFlattenedMatrix size
+		   columns: rowMajorNonFlattenedMatrix first size)
+		  initializeRows: rowMajorNonFlattenedMatrix;
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }

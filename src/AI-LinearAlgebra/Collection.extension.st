@@ -3,7 +3,7 @@ Extension { #name : #Collection }
 { #category : #'*AI-LinearAlgebra' }
 Collection >> asAIColumnMajorMatrix [
 	
-	^ self asAIMatrix: AIColumnMajorMatrix
+	^ self asAIMatrix: AIPharoFloatContiguousColumnMajorMatrix
 ]
 
 { #category : #'*AI-LinearAlgebra' }

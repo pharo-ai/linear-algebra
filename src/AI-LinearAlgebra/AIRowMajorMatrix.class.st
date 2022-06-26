@@ -2,6 +2,9 @@ Class {
 	#name : #AIRowMajorMatrix,
 	#superclass : #AIAbstractMatrix,
 	#type : #variable,
+	#instVars : [
+		'rows'
+	],
 	#category : #'AI-LinearAlgebra'
 }
 
@@ -30,37 +33,49 @@ AIRowMajorMatrix >> asRowMajor [
 { #category : #accessing }
 AIRowMajorMatrix >> at: rowIndex at: columnIndex [
 
-	^ (self at: rowIndex) at: columnIndex
+	^ (rows at: rowIndex) at: columnIndex
 ]
 
 { #category : #accessing }
 AIRowMajorMatrix >> at: rowIndex at: columnIndex put: aValue [
 
-	^ (self at: rowIndex) at: columnIndex put: aValue
+	^ (rows at: rowIndex) at: columnIndex put: aValue
 ]
 
 { #category : #accessing }
 AIRowMajorMatrix >> atRow: rowIndex atColumn: columnIndex [ 
 	
-	^ (self at: rowIndex) at: columnIndex
+	^ (rows at: rowIndex) at: columnIndex
 ]
 
 { #category : #accessing }
 AIRowMajorMatrix >> atRow: rowIndex atColumn: columnIndex put: aValue [
 	
-	^ (self at: rowIndex) at: columnIndex put: aValue
+	^ (rows at: rowIndex) at: columnIndex put: aValue
+]
+
+{ #category : #operations }
+AIRowMajorMatrix >> columnAverage [
+	
+	^ rows averageForMatrix
+]
+
+{ #category : #converting }
+AIRowMajorMatrix >> initializeRows: aCollectionOfCollections [
+
+	rows := aCollectionOfCollections
 ]
 
 { #category : #accessing }
 AIRowMajorMatrix >> numberOfColumns [
 
-	^ self ifNotEmpty: [ self first size ] ifEmpty: [ 0 ]
+	^ rows ifNotEmpty: [ rows first size ] ifEmpty: [ 0 ]
 ]
 
 { #category : #accessing }
 AIRowMajorMatrix >> numberOfRows [
 
-	^ self size
+	^ rows size
 ]
 
 { #category : #'point functions' }

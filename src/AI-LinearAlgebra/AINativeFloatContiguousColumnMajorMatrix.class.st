@@ -1,5 +1,5 @@
 Class {
-	#name : #AIColumnMajorMatrix,
+	#name : #AINativeFloatContiguousColumnMajorMatrix,
 	#superclass : #AIAbstractMatrix,
 	#type : #variable,
 	#instVars : [
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-AIColumnMajorMatrix class >> newContents: contents rows: aNumberOfRows columns: aNumberOfColumns [
+AINativeFloatContiguousColumnMajorMatrix class >> newContents: contents rows: aNumberOfRows columns: aNumberOfColumns [
 
 	^ self new
 		contents: contents;
@@ -21,16 +21,16 @@ AIColumnMajorMatrix class >> newContents: contents rows: aNumberOfRows columns: 
 ]
 
 { #category : #'as yet unclassified' }
-AIColumnMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
+AINativeFloatContiguousColumnMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 
 	^ self
-		  newContents: (Float64Array new: aNumberOfColumns * aNumberOfRows)
+		  newContents: (Array new: aNumberOfColumns * aNumberOfRows)
 		  rows: aNumberOfRows
 		  columns: aNumberOfColumns
 ]
 
 { #category : #'as yet unclassified' }
-AIColumnMajorMatrix class >> values: flattenedCollection rows: aNumberOfRows columns: aNumberOfColumns [
+AINativeFloatContiguousColumnMajorMatrix class >> values: flattenedCollection rows: aNumberOfRows columns: aNumberOfColumns [
 
 	^ self
 		  newContents: flattenedCollection
@@ -39,7 +39,7 @@ AIColumnMajorMatrix class >> values: flattenedCollection rows: aNumberOfRows col
 ]
 
 { #category : #operating }
-AIColumnMajorMatrix >> -= aCollection [ 
+AINativeFloatContiguousColumnMajorMatrix >> -= aCollection [ 
 	
 	"Assume a collection is a matrix of one row"
 	1 to: numberOfRows do: [ :row |
@@ -51,37 +51,37 @@ AIColumnMajorMatrix >> -= aCollection [
 ]
 
 { #category : #converting }
-AIColumnMajorMatrix >> asArray [
+AINativeFloatContiguousColumnMajorMatrix >> asArray [
 	
 	^ contents
 ]
 
 { #category : #converting }
-AIColumnMajorMatrix >> asColumnMajor [
+AINativeFloatContiguousColumnMajorMatrix >> asColumnMajor [
 
 	^ self
 ]
 
 { #category : #converting }
-AIColumnMajorMatrix >> asRowMajor [
+AINativeFloatContiguousColumnMajorMatrix >> asRowMajor [
 
 	^ self notYetImplemented
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> atRow: rowIndex atColumn: columnIndex [ 
+AINativeFloatContiguousColumnMajorMatrix >> atRow: rowIndex atColumn: columnIndex [ 
 	
 	^ contents at: (columnIndex - 1 * numberOfRows) + rowIndex
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> atRow: rowIndex atColumn: columnIndex put: aValue [
+AINativeFloatContiguousColumnMajorMatrix >> atRow: rowIndex atColumn: columnIndex put: aValue [
 	
 	^ contents at: (columnIndex - 1 * numberOfRows) + rowIndex put: aValue
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> columnAt: columnIndex [
+AINativeFloatContiguousColumnMajorMatrix >> columnAt: columnIndex [
 
 	"A column runs from (c-1*n)+1 to c*n"
 
@@ -91,61 +91,72 @@ AIColumnMajorMatrix >> columnAt: columnIndex [
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> columnAverage [
+AINativeFloatContiguousColumnMajorMatrix >> columnAverage [
 	
 	| runningAverage |
-	runningAverage := Float64Array new: numberOfColumns.
+	runningAverage := Array new: numberOfColumns.
 	1 to: numberOfColumns do: [ :column |
-		runningAverage at: column put: (self columnAt: column) sum / numberOfRows
+		1 to: numberOfRows do: [ :row |
+			runningAverage at: column put: (self atRow: row atColumn: column)
+		]
+	].
+	1 to: numberOfColumns do: [ :column |
+		runningAverage at: column put: (runningAverage at: column) / numberOfRows
 	].
 	^ runningAverage
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> contents [
+AINativeFloatContiguousColumnMajorMatrix >> contents [
 
 	^ contents
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> contents: anObject [
+AINativeFloatContiguousColumnMajorMatrix >> contents: anObject [
 
 	contents := anObject
 ]
 
+{ #category : #accessing }
+AINativeFloatContiguousColumnMajorMatrix >> contentsForLapack [
+
+	^ contents asFFIExternalArrayOfType: 'double'
+]
+
 { #category : #converting }
-AIColumnMajorMatrix >> flattened [
+AINativeFloatContiguousColumnMajorMatrix >> flattened [
 
 	"I'm already in a flattened representation"
 	^ self
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> numberOfColumns [
+AINativeFloatContiguousColumnMajorMatrix >> numberOfColumns [
 
 	^ numberOfColumns
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> numberOfColumns: anObject [
+AINativeFloatContiguousColumnMajorMatrix >> numberOfColumns: anObject [
 
 	numberOfColumns := anObject
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> numberOfRows [
+AINativeFloatContiguousColumnMajorMatrix >> numberOfRows [
 
 	^ numberOfRows
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrix >> numberOfRows: anObject [
+AINativeFloatContiguousColumnMajorMatrix >> numberOfRows: anObject [
 
 	numberOfRows := anObject
 ]
 
 { #category : #'point functions' }
-AIColumnMajorMatrix >> transposed [
+AINativeFloatContiguousColumnMajorMatrix >> transposed [
 
 	| newMatrix |
 	newMatrix := self class new: self numberOfColumns.

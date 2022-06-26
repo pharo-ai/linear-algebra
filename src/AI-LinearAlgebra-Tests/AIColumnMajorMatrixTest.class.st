@@ -12,7 +12,7 @@ AIColumnMajorMatrixTest class >> testParameters [
 
 	| m1 |
 	m1 := ParametrizedTestMatrix new.
-	m1 forSelector: #matrixClass addOptions: { AIColumnMajorMatrix. AIRowMajorMatrix }.
+	m1 forSelector: #matrixClass addOptions: { AIPharoFloatContiguousColumnMajorMatrix. AIRowMajorMatrix }.
 	^ m1
 ]
 
