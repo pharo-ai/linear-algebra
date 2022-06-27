@@ -9,6 +9,14 @@ Class {
 }
 
 { #category : #'instance creation' }
+AIRowMajorMatrix class >> new: numberOfRows [
+
+	^ self new
+		  initializeRows: (Array new: numberOfRows);
+		  yourself
+]
+
+{ #category : #'instance creation' }
 AIRowMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 
 	| theMatrix |
@@ -18,28 +26,16 @@ AIRowMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 	^ theMatrix
 ]
 
-{ #category : #converting }
-AIRowMajorMatrix >> asColumnMajor [
-
-	^ self notYetImplemented
+{ #category : #operating }
+AIRowMajorMatrix >> -= aCollection [ 
+	
+	rows := rows collect: [ :row | row - aCollection ]
 ]
 
-{ #category : #converting }
-AIRowMajorMatrix >> asRowMajor [
+{ #category : #'private - accessing' }
+AIRowMajorMatrix >> at: rowIndex put: aRow [
 
-	^ self
-]
-
-{ #category : #accessing }
-AIRowMajorMatrix >> at: rowIndex at: columnIndex [
-
-	^ (rows at: rowIndex) at: columnIndex
-]
-
-{ #category : #accessing }
-AIRowMajorMatrix >> at: rowIndex at: columnIndex put: aValue [
-
-	^ (rows at: rowIndex) at: columnIndex put: aValue
+	^ rows at: rowIndex put: aRow
 ]
 
 { #category : #accessing }
@@ -54,13 +50,25 @@ AIRowMajorMatrix >> atRow: rowIndex atColumn: columnIndex put: aValue [
 	^ (rows at: rowIndex) at: columnIndex put: aValue
 ]
 
-{ #category : #operations }
+{ #category : #operating }
 AIRowMajorMatrix >> columnAverage [
 	
 	^ rows averageForMatrix
 ]
 
-{ #category : #converting }
+{ #category : #'transforming - lapack' }
+AIRowMajorMatrix >> contentsForLapack [
+	
+	^ self transposed flattened asFFIExternalArrayOfType: 'double'
+]
+
+{ #category : #'private - transforming' }
+AIRowMajorMatrix >> flattened [
+	
+	^ rows flattened
+]
+
+{ #category : #initialization }
 AIRowMajorMatrix >> initializeRows: aCollectionOfCollections [
 
 	rows := aCollectionOfCollections
@@ -78,7 +86,7 @@ AIRowMajorMatrix >> numberOfRows [
 	^ rows size
 ]
 
-{ #category : #'point functions' }
+{ #category : #'private - transforming' }
 AIRowMajorMatrix >> transposed [
 
 	| newMatrix |

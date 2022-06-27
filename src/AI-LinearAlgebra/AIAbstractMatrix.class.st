@@ -1,7 +1,6 @@
 Class {
 	#name : #AIAbstractMatrix,
 	#superclass : #Object,
-	#type : #variable,
 	#category : #'AI-LinearAlgebra'
 }
 
@@ -33,6 +32,18 @@ AIAbstractMatrix class >> values: aCollection rows: aNumberOfRows columns: aNumb
 	^ (self newRows: aNumberOfRows columns: aNumberOfColumns)
 		  initializeRows: rows;
 		  yourself
+]
+
+{ #category : #operating }
+AIAbstractMatrix >> columnAverage [
+
+	self subclassResponsibility
+]
+
+{ #category : #'transforming - lapack' }
+AIAbstractMatrix >> contentsForLapack [
+
+	self subclassResponsibility
 ]
 
 { #category : #initialization }

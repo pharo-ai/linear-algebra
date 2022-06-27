@@ -50,8 +50,8 @@ AILeastSquares >> solve [
 		numberOfRows: matrixA numberOfRows;
 		numberOfColumns: matrixA numberOfColumns;
 		numberOfRightHandSides: matrixB numberOfColumns;
-		matrixA: matrixA asColumnMajor flattened;
-		matrixB: matrixB asColumnMajor flattened;
+		matrixA: matrixA;
+		matrixB: matrixB;
 		yourself.
 	
 	lapack solve.
