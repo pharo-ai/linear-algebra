@@ -1,35 +1,24 @@
+"
+I am a matrix with an internal representations that is:
+ - contiguous
+ - column major
+ - containing native floats
+
+I am optimised to minimise data movement.
+My #contentsForLapack method returns just my contents without any manipulation.
+
+Internally, I use a Float64Array.
+"
 Class {
 	#name : #AINativeFloatContiguousColumnMajorMatrix,
 	#superclass : #AIContiguousColumnMajorMatrix,
 	#category : #'AI-LinearAlgebra'
 }
 
-{ #category : #'as yet unclassified' }
-AINativeFloatContiguousColumnMajorMatrix class >> newContents: contents rows: aNumberOfRows columns: aNumberOfColumns [
-
-	^ self new
-		contents: contents;
-		numberOfRows: aNumberOfRows;
-		numberOfColumns: aNumberOfColumns;
-		yourself
-]
-
-{ #category : #'as yet unclassified' }
-AINativeFloatContiguousColumnMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
-
-	^ self
-		  newContents: (Float64Array new: aNumberOfColumns * aNumberOfRows)
-		  rows: aNumberOfRows
-		  columns: aNumberOfColumns
-]
-
-{ #category : #'as yet unclassified' }
-AINativeFloatContiguousColumnMajorMatrix class >> values: flattenedCollection rows: aNumberOfRows columns: aNumberOfColumns [
-
-	^ self
-		  newContents: flattenedCollection
-		  rows: aNumberOfRows
-		  columns: aNumberOfColumns
+{ #category : #accessing }
+AINativeFloatContiguousColumnMajorMatrix class >> arrayKind [
+	"The kind of array used by default for my internal representation"
+	^ Float64Array
 ]
 
 { #category : #operating }
@@ -42,4 +31,11 @@ AINativeFloatContiguousColumnMajorMatrix >> columnAverage [
 AINativeFloatContiguousColumnMajorMatrix >> contentsForLapack [
 
 	^ contents
+]
+
+{ #category : #'private - accessing' }
+AINativeFloatContiguousColumnMajorMatrix >> defaultElement [
+
+	"I'm made of Float arrays initialized in 0.0"
+	^ 0.0
 ]

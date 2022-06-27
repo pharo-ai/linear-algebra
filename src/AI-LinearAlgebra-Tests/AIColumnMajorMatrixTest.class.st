@@ -47,6 +47,36 @@ AIColumnMajorMatrixTest >> testColumnAverage [
 ]
 
 { #category : #tests }
+AIColumnMajorMatrixTest >> testCreateMatrixFromRows [
+
+	| matrix |
+	matrix := matrixClass rows: #((1 2 3) (4 5 6)).
+	
+	"Let's assume that if the matrix was allocated its last element will be there"
+	self assert: (matrix atRow: 2 atColumn: 3) equals: 6
+]
+
+{ #category : #tests }
+AIColumnMajorMatrixTest >> testCreateMatrixFromSizes [
+
+	| matrix |
+	matrix := matrixClass newRows: 2 columns: 3.
+	
+	"Let's assume that if the matrix was allocated its last element will be there"
+	self assert: (matrix atRow: 2 atColumn: 3) equals: matrix defaultElement
+]
+
+{ #category : #tests }
+AIColumnMajorMatrixTest >> testCreateMatrixFromValues [
+
+	| matrix |
+	matrix := matrixClass values: #(1 2 3 4 5 6) rows: 2 columns: 3.
+	
+	"Let's assume that if the matrix was allocated its last element will be there"
+	self assert: (matrix atRow: 2 atColumn: 3) equals: 6
+]
+
+{ #category : #tests }
 AIColumnMajorMatrixTest >> testRead [
 
 	| aiMatrix |

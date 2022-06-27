@@ -1,3 +1,14 @@
+"
+I am a matrix with an internal representations that is:
+- an array of arrays
+- each sub array is a row (thus I'm in row major)
+- containing pharo floats
+
+My #contentsForLapack method transforms myself into lapack format:
+ - transpose to get column-major
+ - flatten to get contiguous
+ - transformed to a native float array
+"
 Class {
 	#name : #AIRowMajorMatrix,
 	#superclass : #AIAbstractMatrix,
@@ -60,6 +71,13 @@ AIRowMajorMatrix >> columnAverage [
 AIRowMajorMatrix >> contentsForLapack [
 	
 	^ self transposed flattened asFFIExternalArrayOfType: 'double'
+]
+
+{ #category : #'private - accessing' }
+AIRowMajorMatrix >> defaultElement [
+	
+	"I'm made of normal arrays initialized in nil"
+	^ nil
 ]
 
 { #category : #'private - transforming' }

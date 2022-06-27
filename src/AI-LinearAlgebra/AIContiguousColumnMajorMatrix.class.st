@@ -1,3 +1,9 @@
+"
+I am the abstract superclass of matrixes represented as a contiguous array.
+I implement the main accessing and manipulation methods.
+
+See my superclass for more details
+"
 Class {
 	#name : #AIContiguousColumnMajorMatrix,
 	#superclass : #AIAbstractMatrix,
@@ -9,10 +15,44 @@ Class {
 	#category : #'AI-LinearAlgebra'
 }
 
+{ #category : #accessing }
+AIContiguousColumnMajorMatrix class >> arrayKind [
+	"The kind of array used by default for my internal representation"
+	self subclassResponsibility
+]
+
 { #category : #testing }
 AIContiguousColumnMajorMatrix class >> isAbstract [
 
 	^ self == AIContiguousColumnMajorMatrix
+]
+
+{ #category : #'instance creation' }
+AIContiguousColumnMajorMatrix class >> newContents: columnMajorFlattenedMatrix rows: aNumberOfRows columns: aNumberOfColumns [
+
+	^ self new
+		contents: columnMajorFlattenedMatrix;
+		numberOfRows: aNumberOfRows;
+		numberOfColumns: aNumberOfColumns;
+		yourself
+]
+
+{ #category : #'instance creation' }
+AIContiguousColumnMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
+
+	^ self
+		  newContents: (self arrayKind new: aNumberOfColumns * aNumberOfRows)
+		  rows: aNumberOfRows
+		  columns: aNumberOfColumns
+]
+
+{ #category : #'instance creation' }
+AIContiguousColumnMajorMatrix class >> values: columnMajorFlattenedMatrix rows: aNumberOfRows columns: aNumberOfColumns [
+
+	^ self
+		  newContents: columnMajorFlattenedMatrix
+		  rows: aNumberOfRows
+		  columns: aNumberOfColumns
 ]
 
 { #category : #operating }
