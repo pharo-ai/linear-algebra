@@ -1,5 +1,5 @@
 Class {
-	#name : #AIColumnMajorMatrixTest,
+	#name : #AIMatrixTest,
 	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'matrixClass'
@@ -7,8 +7,8 @@ Class {
 	#category : #'AI-LinearAlgebra-Tests'
 }
 
-{ #category : #tests }
-AIColumnMajorMatrixTest class >> testParameters [
+{ #category : #'building suites' }
+AIMatrixTest class >> testParameters [
 
 	| m1 |
 	m1 := ParametrizedTestMatrix new.
@@ -21,19 +21,19 @@ AIColumnMajorMatrixTest class >> testParameters [
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrixTest >> matrixClass [
+AIMatrixTest >> matrixClass [
 
 	^ matrixClass
 ]
 
 { #category : #accessing }
-AIColumnMajorMatrixTest >> matrixClass: anObject [
+AIMatrixTest >> matrixClass: anObject [
 
 	matrixClass := anObject
 ]
 
 { #category : #tests }
-AIColumnMajorMatrixTest >> testColumnAverage [
+AIMatrixTest >> testColumnAverage [
 
 	| aiMatrix averages |
 	aiMatrix := #( 
@@ -47,7 +47,7 @@ AIColumnMajorMatrixTest >> testColumnAverage [
 ]
 
 { #category : #tests }
-AIColumnMajorMatrixTest >> testCreateMatrixFromRows [
+AIMatrixTest >> testCreateMatrixFromRows [
 
 	| matrix |
 	matrix := matrixClass rows: #((1 2 3) (4 5 6)).
@@ -57,7 +57,7 @@ AIColumnMajorMatrixTest >> testCreateMatrixFromRows [
 ]
 
 { #category : #tests }
-AIColumnMajorMatrixTest >> testCreateMatrixFromSizes [
+AIMatrixTest >> testCreateMatrixFromSizes [
 
 	| matrix |
 	matrix := matrixClass newRows: 2 columns: 3.
@@ -67,7 +67,7 @@ AIColumnMajorMatrixTest >> testCreateMatrixFromSizes [
 ]
 
 { #category : #tests }
-AIColumnMajorMatrixTest >> testCreateMatrixFromValues [
+AIMatrixTest >> testCreateMatrixFromValues [
 
 	| matrix |
 	matrix := matrixClass values: #(1 2 3 4 5 6) rows: 2 columns: 3.
@@ -77,7 +77,7 @@ AIColumnMajorMatrixTest >> testCreateMatrixFromValues [
 ]
 
 { #category : #tests }
-AIColumnMajorMatrixTest >> testRead [
+AIMatrixTest >> testRead [
 
 	| aiMatrix |
 	aiMatrix := #( (1 2 3 4) (5 6 7 8) (9 10 11 12) ) asAIMatrix: matrixClass.
@@ -97,7 +97,7 @@ AIColumnMajorMatrixTest >> testRead [
 ]
 
 { #category : #tests }
-AIColumnMajorMatrixTest >> testSubstractRow [
+AIMatrixTest >> testSubstractRow [
 
 	| aiMatrix |
 	aiMatrix := #( 
@@ -118,7 +118,7 @@ AIColumnMajorMatrixTest >> testSubstractRow [
 ]
 
 { #category : #tests }
-AIColumnMajorMatrixTest >> testWrite [
+AIMatrixTest >> testWrite [
 
 	| aiMatrix i |
 	aiMatrix := matrixClass newRows: 3 columns: 4.
