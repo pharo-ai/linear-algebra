@@ -55,12 +55,8 @@ AILeastSquares >> solve [
 		yourself.
 	
 	lapack solve.
-	
-	solution := AIPharoFloatContiguousColumnMajorMatrix
-		values: lapack minimumNormSolution
-		rows: matrixB numberOfColumns
-		columns: matrixA numberOfColumns.
-		
+
+	solution := lapack minimumNormSolution.
 	singularValues := lapack singularValues.
 	rank := lapack rank.
 ]

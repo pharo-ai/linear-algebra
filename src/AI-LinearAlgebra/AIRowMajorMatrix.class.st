@@ -114,7 +114,7 @@ AIRowMajorMatrix >> transposed [
 		newMatrix at: j put: (Array new: self numberOfRows).
 
 		(1 to: self numberOfRows) do: [ :i | 
-			newMatrix at: j at: i put: (self at: i at: j) ] ].
+			newMatrix atRow: j atColumn: i put: (self atRow: i atColumn: j) ] ].
 	
 	^ newMatrix
 ]
