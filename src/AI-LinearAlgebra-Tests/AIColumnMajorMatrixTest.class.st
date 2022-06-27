@@ -67,6 +67,27 @@ AIColumnMajorMatrixTest >> testRead [
 ]
 
 { #category : #tests }
+AIColumnMajorMatrixTest >> testSubstractRow [
+
+	| aiMatrix |
+	aiMatrix := #( 
+		(1 2 3 4)
+		(5 6 7 8) ) asAIMatrix: matrixClass.
+	
+	aiMatrix -= #( 2 5 8 1 ).
+	
+	self assert: (aiMatrix atRow: 1 atColumn: 1) equals: -1.
+	self assert: (aiMatrix atRow: 1 atColumn: 2) equals: -3.
+	self assert: (aiMatrix atRow: 1 atColumn: 3) equals: -5.
+	self assert: (aiMatrix atRow: 1 atColumn: 4) equals: 3.
+	
+	self assert: (aiMatrix atRow: 2 atColumn: 1) equals: 3.
+	self assert: (aiMatrix atRow: 2 atColumn: 2) equals: 1.
+	self assert: (aiMatrix atRow: 2 atColumn: 3) equals: -1.
+	self assert: (aiMatrix atRow: 2 atColumn: 4) equals: 7.
+]
+
+{ #category : #tests }
 AIColumnMajorMatrixTest >> testWrite [
 
 	| aiMatrix i |
