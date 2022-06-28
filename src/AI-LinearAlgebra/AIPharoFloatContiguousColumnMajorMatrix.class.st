@@ -22,17 +22,10 @@ AIPharoFloatContiguousColumnMajorMatrix class >> arrayKind [
 	^ Array
 ]
 
-{ #category : #accessing }
+{ #category : #operating }
 AIPharoFloatContiguousColumnMajorMatrix >> columnAverage [
 	
 	^ self columnAverageIntoResultArray: (Array new: numberOfColumns withAll: 0.0)
-]
-
-{ #category : #converting }
-AIPharoFloatContiguousColumnMajorMatrix >> contentsForLapack [
-
-	"Take the pharo float array and transform it to a native float array"
-	^ contents asFFIExternalArrayOfType: 'double'
 ]
 
 { #category : #'private - accessing' }

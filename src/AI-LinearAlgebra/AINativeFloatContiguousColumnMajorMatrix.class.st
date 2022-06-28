@@ -27,12 +27,6 @@ AINativeFloatContiguousColumnMajorMatrix >> columnAverage [
 	^ self columnAverageIntoResultArray: (Float64Array new: numberOfColumns)
 ]
 
-{ #category : #'transforming - lapack' }
-AINativeFloatContiguousColumnMajorMatrix >> contentsForLapack [
-
-	^ contents
-]
-
 { #category : #'private - accessing' }
 AINativeFloatContiguousColumnMajorMatrix >> defaultElement [
 

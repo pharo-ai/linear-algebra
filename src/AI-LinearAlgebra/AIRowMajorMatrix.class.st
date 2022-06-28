@@ -67,12 +67,6 @@ AIRowMajorMatrix >> columnAverage [
 	^ rows averageForMatrix
 ]
 
-{ #category : #'transforming - lapack' }
-AIRowMajorMatrix >> contentsForLapack [
-	
-	^ self transposed flattened asFFIExternalArrayOfType: 'double'
-]
-
 { #category : #'private - accessing' }
 AIRowMajorMatrix >> defaultElement [
 	
@@ -110,10 +104,10 @@ AIRowMajorMatrix >> transposed [
 	| newMatrix |
 	newMatrix := self class new: self numberOfColumns.
 
-	(1 to: self numberOfColumns) do: [ :j | 
+	1 to: self numberOfColumns do: [ :j | 
 		newMatrix at: j put: (Array new: self numberOfRows).
 
-		(1 to: self numberOfRows) do: [ :i | 
+		1 to: self numberOfRows do: [ :i | 
 			newMatrix atRow: j atColumn: i put: (self atRow: i atColumn: j) ] ].
 	
 	^ newMatrix
