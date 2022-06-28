@@ -50,17 +50,13 @@ AILeastSquares >> solve [
 		numberOfRows: matrixA numberOfRows;
 		numberOfColumns: matrixA numberOfColumns;
 		numberOfRightHandSides: matrixB numberOfColumns;
-		matrixA: matrixA transposed flattened;
-		matrixB: matrixB transposed flattened;
+		matrixA: matrixA;
+		matrixB: matrixB;
 		yourself.
 	
 	lapack solve.
-	
-	solution := (AIMatrix
-		values: lapack minimumNormSolution
-		rows: matrixB numberOfColumns
-		columns: matrixA numberOfColumns) transposed.
-		
+
+	solution := lapack minimumNormSolution.
 	singularValues := lapack singularValues.
 	rank := lapack rank.
 ]
