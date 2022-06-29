@@ -73,6 +73,14 @@ AIRowMajorMatrix >> contentsForLapack [
 	^ self transposed flattened asFFIExternalArrayOfType: 'double'
 ]
 
+{ #category : #'transforming - lapack' }
+AIRowMajorMatrix >> contentsForLapackOfAtLeast: size [
+	
+	| contents |
+	contents := self transposed flattened.
+	^ contents asFFIExternalArrayOfType: 'double' size: (contents size max: size)
+]
+
 { #category : #'private - accessing' }
 AIRowMajorMatrix >> defaultElement [
 	

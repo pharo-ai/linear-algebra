@@ -35,6 +35,13 @@ AIPharoFloatContiguousColumnMajorMatrix >> contentsForLapack [
 	^ contents asFFIExternalArrayOfType: 'double'
 ]
 
+{ #category : #converting }
+AIPharoFloatContiguousColumnMajorMatrix >> contentsForLapackOfAtLeast: size [
+
+	"Take the pharo float array and transform it to a native float array"
+	^ contents asFFIExternalArrayOfType: 'double' size: (contents size max: size)
+]
+
 { #category : #'private - accessing' }
 AIPharoFloatContiguousColumnMajorMatrix >> defaultElement [
 	
