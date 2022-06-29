@@ -56,7 +56,7 @@ AILeastSquares >> solve [
 	
 	lapack solve.
 
-	solution := lapack minimumNormSolution.
+	solution := lapack minimumNormSolution asArray.
 	singularValues := lapack singularValues.
 	rank := lapack rank.
 ]

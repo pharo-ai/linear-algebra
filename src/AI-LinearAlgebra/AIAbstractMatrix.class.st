@@ -71,6 +71,12 @@ AIAbstractMatrix >> columnAverage [
 	self subclassResponsibility
 ]
 
+{ #category : #'transforming - lapack' }
+AIAbstractMatrix >> contentsForLapackOfAtLeast: size [
+
+	self subclassResponsibility
+]
+
 { #category : #'private - accessing' }
 AIAbstractMatrix >> defaultElement [
 	
