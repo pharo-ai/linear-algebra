@@ -4,6 +4,12 @@ Class {
 	#category : #'AI-LinearAlgebra-Tests'
 }
 
+{ #category : #accessing }
+AILeastSquaresTest class >> defaultPrecisionsForCloseToComparison [
+
+	^ 0.01
+]
+
 { #category : #tests }
 AILeastSquaresTest >> testSolutionIntelFortranExample [
 
@@ -14,9 +20,12 @@ AILeastSquaresTest >> testSolutionIntelFortranExample [
 		matrixA: fixture matrixA;
 		matrixB: fixture matrixB;
 		yourself.
-		
+	
 	algo solve.
-	self assert: algo solution equals: fixture matrixX.
+	
+	algo solution
+		with: fixture matrixX contents
+		do: [ :real :expected | self assert: real closeTo: expected ]
 ]
 
 { #category : #tests }
@@ -31,5 +40,6 @@ AILeastSquaresTest >> testSolutionSmallExampleOneSolution [
 		yourself.
 		
 	algo solve.
-	self assert: algo solution equals: fixture matrixX.
+	
+	self assert: algo solution equals: fixture matrixX contents
 ]

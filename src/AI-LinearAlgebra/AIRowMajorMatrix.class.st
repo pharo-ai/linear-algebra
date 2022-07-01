@@ -1,31 +1,17 @@
 "
-I am a matrix with an internal representations that is:
-- an array of arrays
-- each sub array is a row (thus I'm in row major)
-- containing pharo floats
+As my brother, am a matrix with an internal representation that is:
+ - contiguous
+ - column major
+ - containing pharo floats
 
-My #contentsForLapack method transforms myself into lapack format:
- - transpose to get column-major
- - flatten to get contiguous
- - transformed to a native float array
+The difference is that I store the elements in a row major form, instead of a column major form
 "
 Class {
 	#name : #AIRowMajorMatrix,
-	#superclass : #AIAbstractMatrix,
+	#superclass : #AIContiguousMatrix,
 	#type : #variable,
-	#instVars : [
-		'rows'
-	],
 	#category : #'AI-LinearAlgebra'
 }
-
-{ #category : #'instance creation' }
-AIRowMajorMatrix class >> new: numberOfRows [
-
-	^ self new
-		  initializeRows: (Array new: numberOfRows);
-		  yourself
-]
 
 { #category : #'instance creation' }
 AIRowMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
@@ -37,86 +23,37 @@ AIRowMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 	^ theMatrix
 ]
 
-{ #category : #operating }
-AIRowMajorMatrix >> -= aCollection [ 
-	
-	rows := rows collect: [ :row | row - aCollection ]
-]
-
-{ #category : #'private - accessing' }
-AIRowMajorMatrix >> at: rowIndex put: aRow [
-
-	^ rows at: rowIndex put: aRow
-]
-
 { #category : #accessing }
-AIRowMajorMatrix >> atRow: rowIndex atColumn: columnIndex [ 
-	
-	^ (rows at: rowIndex) at: columnIndex
+AIRowMajorMatrix >> atRow: rowIndex atColumn: columnIndex [
+
+	^ contents at: rowIndex - 1 * numberOfColumns + columnIndex
 ]
 
 { #category : #accessing }
 AIRowMajorMatrix >> atRow: rowIndex atColumn: columnIndex put: aValue [
 	
-	^ (rows at: rowIndex) at: columnIndex put: aValue
+	^ contents at: (rowIndex - 1 * numberOfColumns + columnIndex) put: aValue
 ]
 
-{ #category : #operating }
+{ #category : #'linear algebra' }
 AIRowMajorMatrix >> columnAverage [
 	
-	^ rows averageForMatrix
-]
-
-{ #category : #'transforming - lapack' }
-AIRowMajorMatrix >> contentsForLapackOfAtLeast: size [
+	| resultArray |
+	resultArray := Array new: numberOfColumns withAll: 0.0.
 	
-	| contents |
-	contents := self transposed flattened.
-	^ contents asFFIExternalArrayOfType: 'double' size: (contents size max: size)
+	1 to: numberOfColumns do: [ :column | 
+		1 to: numberOfRows do: [ :row | 
+			resultArray
+				at: column
+				put: (resultArray at: column) + (self atRow: row atColumn: column) ] ].
+		
+	1 to: numberOfColumns do: [ :column | 
+		resultArray at: column put: (resultArray at: column) / numberOfRows ].
+	^ resultArray
 ]
 
-{ #category : #'private - accessing' }
-AIRowMajorMatrix >> defaultElement [
-	
-	"I'm made of normal arrays initialized in nil"
-	^ nil
-]
-
-{ #category : #'private - transforming' }
-AIRowMajorMatrix >> flattened [
-	
-	^ rows flattened
-]
-
-{ #category : #initialization }
-AIRowMajorMatrix >> initializeRows: aCollectionOfCollections [
-
-	rows := aCollectionOfCollections
-]
-
-{ #category : #accessing }
-AIRowMajorMatrix >> numberOfColumns [
-
-	^ rows ifNotEmpty: [ rows first size ] ifEmpty: [ 0 ]
-]
-
-{ #category : #accessing }
-AIRowMajorMatrix >> numberOfRows [
-
-	^ rows size
-]
-
-{ #category : #'private - transforming' }
+{ #category : #'linear algebra' }
 AIRowMajorMatrix >> transposed [
 
-	| newMatrix |
-	newMatrix := self class new: self numberOfColumns.
-
-	1 to: self numberOfColumns do: [ :j | 
-		newMatrix at: j put: (Array new: self numberOfRows).
-
-		1 to: self numberOfRows do: [ :i | 
-			newMatrix atRow: j atColumn: i put: (self atRow: i atColumn: j) ] ].
-	
-	^ newMatrix
+	^ AIColumnMajorMatrix values: contents rows: numberOfColumns columns: numberOfRows
 ]

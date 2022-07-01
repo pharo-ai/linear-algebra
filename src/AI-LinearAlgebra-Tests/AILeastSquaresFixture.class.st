@@ -1,3 +1,6 @@
+"
+I am the abstract class for the fixture example for testing lapack least squares algorithm
+"
 Class {
 	#name : #AILeastSquaresFixture,
 	#superclass : #Object,

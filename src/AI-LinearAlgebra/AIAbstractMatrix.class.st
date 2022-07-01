@@ -71,19 +71,6 @@ AIAbstractMatrix >> columnAverage [
 	self subclassResponsibility
 ]
 
-{ #category : #'transforming - lapack' }
-AIAbstractMatrix >> contentsForLapackOfAtLeast: size [
-
-	self subclassResponsibility
-]
-
-{ #category : #'private - accessing' }
-AIAbstractMatrix >> defaultElement [
-	
-	"Return the default element of my internal representation"
-	^ self subclassResponsibility
-]
-
 { #category : #initialization }
 AIAbstractMatrix >> initializeRows: aCollectionOfCollections [
 
@@ -92,14 +79,8 @@ AIAbstractMatrix >> initializeRows: aCollectionOfCollections [
 			self atRow: rowIndex atColumn: columnIndex put: value ] ]
 ]
 
-{ #category : #accessing }
-AIAbstractMatrix >> numberOfColumns [
+{ #category : #'linear algebra' }
+AIAbstractMatrix >> transposed [
 
-	self subclassResponsibility
-]
-
-{ #category : #accessing }
-AIAbstractMatrix >> numberOfRows [
-
-	self subclassResponsibility
+	^ self subclassResponsibility
 ]

@@ -11,19 +11,31 @@ Class {
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixA [
 
 	matrixA := #(
-		(0 1.1)
-		(1 0)
-		(0 -0.2)) asAIMatrix.
+		#( 0 1.1 )
+		#( 1 0 )
+		#( 0 -0.2 ) ) asAIColumnMajorMatrix
 ]
 
 { #category : #initialization }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixB [
 
-	matrixB := #(1.1 -1.1 -0.2) asAIMatrix.
+	matrixB := #( 1.1 -1.1 -0.2 ) asAIColumnMajorMatrix
 ]
 
 { #category : #initialization }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixX [
 
-	matrixX := #(-1.1 1) asAIMatrix.
+	matrixX := #( -1.1 1 ) asAIColumnMajorMatrix
+]
+
+{ #category : #accessing }
+AILeastSquaresFixtureSmallOneSolution >> minimumNormSolutionColumns [
+
+	^ 1
+]
+
+{ #category : #accessing }
+AILeastSquaresFixtureSmallOneSolution >> minimumNormSolutionRows [
+
+	^ 2
 ]

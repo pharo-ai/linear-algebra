@@ -13,29 +13,41 @@ Class {
 AILeastSquaresFixtureIntelFortran >> initializeMatrixA [
 
 	matrixA := #(
-		( 0.12  -8.19   7.69  -2.26  -4.71)
-		(-6.91   2.22  -5.12  -9.08   9.96)
-		(-3.33  -8.94  -6.72  -4.40  -9.98)
-		( 3.97   3.33  -2.74  -7.92  -3.20)) asAIMatrix.
+		#( 0.12 -8.19 7.69 -2.26 -4.71 )
+		#( -6.91 2.22 -5.12 -9.08 9.96 )
+		#( -3.33 -8.94 -6.72 -4.40 -9.98 )
+		#( 3.97 3.33 -2.74 -7.92 -3.20 ) ) asAIColumnMajorMatrix
 ]
 
 { #category : #initialization }
 AILeastSquaresFixtureIntelFortran >> initializeMatrixB [
 
 	matrixB := #(
-		(7.30   0.47  -6.28)
-		(1.33   6.58  -3.42)
-		(2.68  -1.71   3.46)
-		(-9.62  -0.79   0.41)) asAIMatrix.
+		#( 7.30 0.47 -6.28 )
+		#( 1.33 6.58 -3.42 )
+		#( 2.68 -1.71 3.46 )
+		#( -9.62 -0.79 0.41 ) ) asAIColumnMajorMatrix
 ]
 
 { #category : #initialization }
 AILeastSquaresFixtureIntelFortran >> initializeMatrixX [
 
 	matrixX := #(
-		(-0.69  -0.24   0.06)
-		(-0.80  -0.08   0.21)
-		( 0.38   0.12  -0.65)
-		( 0.29  -0.24   0.42)
-		( 0.29   0.35  -0.30)) asAIMatrix.
+		#( -0.69 -0.24 0.06 )
+		#( -0.80 -0.08 0.21 )
+		#( 0.38 0.12 -0.65 )
+		#( 0.29 -0.24 0.42 )
+		#( 0.29 0.35 -0.30 ) ) asAIColumnMajorMatrix
+]
+
+{ #category : #accessing }
+AILeastSquaresFixtureIntelFortran >> minimumNormSolutionColumns [
+
+	^ 3
+]
+
+{ #category : #accessing }
+AILeastSquaresFixtureIntelFortran >> minimumNormSolutionRows [
+
+	^ 5
 ]
