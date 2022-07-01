@@ -24,6 +24,12 @@ AINativeFloatMatrix class >> arrayKind [
 	^ Float64Array
 ]
 
+{ #category : #'linear algebra' }
+AINativeFloatMatrix >> columnAverage [
+	
+	^ self columnAverageIntoResultArray: (Float64Array new: numberOfColumns)
+]
+
 { #category : #'transforming - lapack' }
 AINativeFloatMatrix >> contentsForLapack [
 

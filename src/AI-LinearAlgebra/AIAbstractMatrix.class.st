@@ -65,7 +65,7 @@ AIAbstractMatrix >> atRow: rowIndex atColumn: columnIndex put: value [
 	self subclassResponsibility
 ]
 
-{ #category : #operating }
+{ #category : #'linear algebra' }
 AIAbstractMatrix >> columnAverage [
 
 	self subclassResponsibility

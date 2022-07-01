@@ -13,14 +13,10 @@ Class {
 	#category : #'AI-LinearAlgebra'
 }
 
-{ #category : #'instance creation' }
-AIRowMajorMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
+{ #category : #accessing }
+AIRowMajorMatrix class >> arrayKind [
 
-	| theMatrix |
-	theMatrix := self new: aNumberOfRows.
-	1 to: aNumberOfRows do: [ :i | 
-		theMatrix at: i put: (Array new: aNumberOfColumns) ].
-	^ theMatrix
+	^ Array
 ]
 
 { #category : #accessing }
