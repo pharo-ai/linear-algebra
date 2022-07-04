@@ -56,7 +56,12 @@ AILeastSquares >> solve [
 	
 	lapack solve.
 
-	solution := lapack minimumNormSolution asArray.
+	solution := AIColumnMajorMatrix
+		values: lapack minimumNormSolution asArray
+		rows: matrixA numberOfColumns
+		columns: matrixB numberOfColumns.
+
+	"solution := lapack minimumNormSolution asArray."
 	singularValues := lapack singularValues.
 	rank := lapack rank.
 ]

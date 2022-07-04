@@ -13,11 +13,12 @@ Class {
 }
 
 { #category : #initialization }
-AILeastSquaresFixture >> initialize [ 
+AILeastSquaresFixture >> initialize [
+
 	super initialize.
 	self initializeMatrixA.
 	self initializeMatrixB.
-	self initializeMatrixX.
+	self initializeMatrixX
 ]
 
 { #category : #initialization }

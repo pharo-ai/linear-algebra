@@ -18,7 +18,9 @@ Class {
 
 { #category : #accessing }
 AIContiguousMatrix class >> arrayKind [
+
 	"The kind of array used by default for my internal representation"
+
 	self subclassResponsibility
 ]
 
@@ -42,18 +44,18 @@ AIContiguousMatrix class >> newContents: columnMajorFlattenedMatrix rows: aNumbe
 AIContiguousMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 
 	^ self
-		  newContents: (self arrayKind new: aNumberOfColumns * aNumberOfRows)
-		  rows: aNumberOfRows
-		  columns: aNumberOfColumns
+		newContents: (self arrayKind new: aNumberOfColumns * aNumberOfRows)
+		rows: aNumberOfRows
+		columns: aNumberOfColumns
 ]
 
 { #category : #'instance creation' }
 AIContiguousMatrix class >> values: columnMajorFlattenedMatrix rows: aNumberOfRows columns: aNumberOfColumns [
 
 	^ self
-		  newContents: columnMajorFlattenedMatrix
-		  rows: aNumberOfRows
-		  columns: aNumberOfColumns
+		newContents: columnMajorFlattenedMatrix
+		rows: aNumberOfRows
+		columns: aNumberOfColumns
 ]
 
 { #category : #operating }
