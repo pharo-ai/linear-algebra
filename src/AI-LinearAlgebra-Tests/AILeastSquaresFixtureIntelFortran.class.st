@@ -9,7 +9,8 @@ Class {
 	#name : #AILeastSquaresFixtureIntelFortran,
 	#superclass : #AILeastSquaresFixture,
 	#instVars : [
-		'singularValues'
+		'singularValues',
+		'rank'
 	],
 	#category : #'AI-LinearAlgebra-Tests'
 }
@@ -18,7 +19,8 @@ Class {
 AILeastSquaresFixtureIntelFortran >> initialize [
 
 	super initialize.
-	self initializeSingularValues
+	self initializeSingularValues.
+	self initializeRank
 ]
 
 { #category : #initialization }
@@ -59,11 +61,17 @@ AILeastSquaresFixtureIntelFortran >> initializeMatrixB [
 AILeastSquaresFixtureIntelFortran >> initializeMatrixX [
 
 	matrixX := #(
-		#( -0.69 -0.24 0.06 )
-		#( -0.80 -0.08 0.21 )
-		#( 0.38 0.12 -0.65 )
-		#( 0.29 -0.24 0.42 )
-		#( 0.29 0.35 -0.30 ) ) asAIColumnMajorMatrix
+		#( -0.685765 -0.289427 -0.017234 )
+		#( -0.795005 -0.482921 -0.146637 )
+	   #( 0.376681 0.511976 0.264648 )
+		#( 0.288496 0.196115 -0.176728 )
+	   #( 0.291609 0.177127 0.036823 ) ) asAIColumnMajorMatrix
+]
+
+{ #category : #initialization }
+AILeastSquaresFixtureIntelFortran >> initializeRank [
+
+	rank := 4
 ]
 
 { #category : #initialization }
@@ -85,6 +93,13 @@ AILeastSquaresFixtureIntelFortran >> minimumNormSolutionRows [
 ]
 
 { #category : #accessing }
+AILeastSquaresFixtureIntelFortran >> rank [
+
+	^ rank
+]
+
+{ #category : #accessing }
 AILeastSquaresFixtureIntelFortran >> singularValues [
+
 	^ singularValues
 ]

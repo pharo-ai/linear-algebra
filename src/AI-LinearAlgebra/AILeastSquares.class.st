@@ -1,3 +1,10 @@
+"
+I am a class that solves the least square problem using lapack. To use me, you need to have lapack installed on your system.
+
+To use me, you need to set the matrixA and matrixB. Those objects, need to be an instance of AIColumnMajorMatrix because that object understand the message `contentsForLapack` and `contentsForLapackOfAtLeast:`
+
+I am currently in developing so I will probably change in time
+"
 Class {
 	#name : #AILeastSquares,
 	#superclass : #Object,
@@ -56,12 +63,13 @@ AILeastSquares >> solve [
 	
 	lapack solve.
 
+	"solution := lapack minimumNormSolution asArray."
 	solution := AIColumnMajorMatrix
+		"values: (lapack minimumNormSolution asArray first: matrixA numberOfColumns)"
 		values: lapack minimumNormSolution asArray
 		rows: matrixA numberOfColumns
 		columns: matrixB numberOfColumns.
 
-	"solution := lapack minimumNormSolution asArray."
 	singularValues := lapack singularValues.
-	rank := lapack rank.
+	rank := lapack rank
 ]

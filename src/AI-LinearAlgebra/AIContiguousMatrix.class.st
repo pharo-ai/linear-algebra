@@ -31,12 +31,12 @@ AIContiguousMatrix class >> isAbstract [
 ]
 
 { #category : #'instance creation' }
-AIContiguousMatrix class >> newContents: columnMajorFlattenedMatrix rows: aNumberOfRows columns: aNumberOfColumns [
+AIContiguousMatrix class >> newContents: flattenedMatrix rows: numberOfRows columns: numberOfColumns [
 
 	^ self new
-		contents: columnMajorFlattenedMatrix;
-		numberOfRows: aNumberOfRows;
-		numberOfColumns: aNumberOfColumns;
+		contents: (flattenedMatrix first: numberOfRows * numberOfColumns);
+		numberOfRows: numberOfRows;
+		numberOfColumns: numberOfColumns;
 		yourself
 ]
 
@@ -50,10 +50,10 @@ AIContiguousMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 ]
 
 { #category : #'instance creation' }
-AIContiguousMatrix class >> values: columnMajorFlattenedMatrix rows: aNumberOfRows columns: aNumberOfColumns [
+AIContiguousMatrix class >> values: flattenedMatrix rows: aNumberOfRows columns: aNumberOfColumns [
 
 	^ self
-		newContents: columnMajorFlattenedMatrix
+		newContents: flattenedMatrix
 		rows: aNumberOfRows
 		columns: aNumberOfColumns
 ]
@@ -68,6 +68,16 @@ AIContiguousMatrix >> -= aCollection [
 			self atRow: row atColumn: column put: (me - (aCollection at: column))
 		]
 	]
+]
+
+{ #category : #comparing }
+AIContiguousMatrix >> = aMatrix [
+
+	self class = aMatrix class ifFalse: [ ^ false ].
+	^ contents = aMatrix contents
+		and: [ numberOfRows = aMatrix numberOfRows
+			and: [ numberOfColumns = aMatrix numberOfColumns ] ]
+		
 ]
 
 { #category : #accessing }
@@ -90,12 +100,30 @@ AIContiguousMatrix >> contents: anObject [
 	contents := anObject
 ]
 
+{ #category : #'transforming - lapack' }
+AIContiguousMatrix >> contentsForLapack [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #'transforming - lapack' }
+AIContiguousMatrix >> contentsForLapackOfAtLeast: size [
+
+	^ self subclassResponsibility
+]
+
 { #category : #'private - accessing' }
 AIContiguousMatrix >> defaultElement [
 
 	"I'm made of normal arrays initialized in nil"
 
 	^ nil
+]
+
+{ #category : #comparing }
+AIContiguousMatrix >> hash [
+
+	^ contents hash bitXor: (numberOfRows hash bitXor: numberOfColumns hash)
 ]
 
 { #category : #inspector }

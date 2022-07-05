@@ -10,22 +10,19 @@ Class {
 { #category : #initialization }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixA [
 
-	matrixA := #(
-		#( 0 1.1 )
-		#( 1 0 )
-		#( 0 -0.2 ) ) asAIColumnMajorMatrix
+	matrixA := AIColumnMajorMatrix rows: #( #( 0 1.1 ) #( 1 0 ) #( 0 -0.2 ) )
 ]
 
 { #category : #initialization }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixB [
 
-	matrixB := #( 1.1 -1.1 -0.2 ) asAIColumnMajorMatrix
+	matrixB := AIColumnMajorMatrix values: #( 1.1 -1.1 -0.2 ) rows: 3 columns: 1
 ]
 
 { #category : #initialization }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixX [
 
-	matrixX := #( -1.1 1 ) asAIColumnMajorMatrix
+	matrixX := AIColumnMajorMatrix values: #( -1.1 1 ) rows: 2 columns: 1
 ]
 
 { #category : #accessing }

@@ -48,6 +48,18 @@ AIRowMajorMatrix >> columnAverage [
 	^ resultArray
 ]
 
+{ #category : #'transforming - lapack' }
+AIRowMajorMatrix >> contentsForLapack [
+
+	Exception signal: 'For calling LAPACK you need to use AIColumnMajorMatrix instead'
+]
+
+{ #category : #'transforming - lapack' }
+AIRowMajorMatrix >> contentsForLapackOfAtLeast: size [
+
+	Exception signal: 'For calling LAPACK you need to use AIColumnMajorMatrix instead'
+]
+
 { #category : #'linear algebra' }
 AIRowMajorMatrix >> transposed [
 
