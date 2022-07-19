@@ -50,7 +50,7 @@ AIRowMajorMatrix >> columnAverage [
 
 { #category : #'transforming - lapack' }
 AIRowMajorMatrix >> contentsForLapack [
-
+	
 	Exception signal: 'For calling LAPACK you need to use AIColumnMajorMatrix instead'
 ]
 
