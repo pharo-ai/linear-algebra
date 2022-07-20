@@ -26,11 +26,10 @@ AIAbstractMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 { #category : #'instance creation' }
 AIAbstractMatrix class >> rows: rowMajorNonFlattenedMatrix [
 
-	^ (self
-		   newRows: rowMajorNonFlattenedMatrix size
-		   columns: rowMajorNonFlattenedMatrix first size)
-		  initializeRows: rowMajorNonFlattenedMatrix;
-		  yourself
+	^ (self newRows: rowMajorNonFlattenedMatrix size
+		columns: rowMajorNonFlattenedMatrix first size)
+			initializeRows: rowMajorNonFlattenedMatrix;
+			yourself
 ]
 
 { #category : #'instance creation' }
