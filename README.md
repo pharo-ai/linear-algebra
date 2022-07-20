@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/pharo-ai/linear-algebra/badge.svg?branch=master)](https://coveralls.io/github/pharo-ai/linear-algebra?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/pharo-ai/linear-algebra/master/LICENSE)
 
-Fast linear algebra implemented using [Lapack](https://github.com/pharo-ai/lapack).
+Fast linear algebra implemented using [Pharo Lapack](https://github.com/pharo-ai/lapack).
 
 For the documentation, please refer to the pharo-ai wiki page: https://github.com/pharo-ai/wiki/blob/master/wiki/LinearAlgebra/LinearAlgebra.md
 
