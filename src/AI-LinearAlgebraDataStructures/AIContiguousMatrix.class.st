@@ -83,7 +83,7 @@ AIContiguousMatrix >> = aMatrix [
 { #category : #accessing }
 AIContiguousMatrix >> atRow: row [
 
-	"Return sthe row"
+	"Returns the row"
 
 	^ (1 to: numberOfColumns) collect: [ :column | self atRow: row atColumn: column ]
 ]
