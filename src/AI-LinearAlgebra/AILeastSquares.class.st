@@ -3,6 +3,8 @@ I am a class that solves the least square problem using lapack. To use me, you n
 
 To use me, you need to set the matrixA and matrixB. Those objects, need to be an instance of AIColumnMajorMatrix because that object understand the message `contentsForLapack` and `contentsForLapackOfAtLeast:`
 
+Actually you can use any object that understands the messages `contentsForLapack` and `contentsForLapackOfAtLeast:`
+
 I am currently in developing so I will probably change in time
 "
 Class {

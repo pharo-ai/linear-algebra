@@ -8,7 +8,7 @@ My concrete subclasses should implement mainly the methods:
 Class {
 	#name : #AIAbstractMatrix,
 	#superclass : #Object,
-	#category : #'AI-LinearAlgebra'
+	#category : #'AI-LinearAlgebraDataStructures'
 }
 
 { #category : #testing }

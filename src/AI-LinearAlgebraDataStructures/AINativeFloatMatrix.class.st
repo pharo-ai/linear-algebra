@@ -15,7 +15,7 @@ Class {
 	#name : #AINativeFloatMatrix,
 	#superclass : #AIColumnMajorMatrix,
 	#type : #variable,
-	#category : #'AI-LinearAlgebra'
+	#category : #'AI-LinearAlgebraDataStructures'
 }
 
 { #category : #accessing }

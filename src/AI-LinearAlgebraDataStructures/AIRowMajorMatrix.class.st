@@ -10,7 +10,7 @@ Class {
 	#name : #AIRowMajorMatrix,
 	#superclass : #AIContiguousMatrix,
 	#type : #variable,
-	#category : #'AI-LinearAlgebra'
+	#category : #'AI-LinearAlgebraDataStructures'
 }
 
 { #category : #accessing }

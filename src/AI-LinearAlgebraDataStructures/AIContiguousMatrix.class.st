@@ -13,7 +13,7 @@ Class {
 		'numberOfColumns',
 		'contents'
 	],
-	#category : #'AI-LinearAlgebra'
+	#category : #'AI-LinearAlgebraDataStructures'
 }
 
 { #category : #accessing }

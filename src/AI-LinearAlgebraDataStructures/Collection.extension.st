@@ -1,18 +1,18 @@
 Extension { #name : #Collection }
 
-{ #category : #'*AI-LinearAlgebra' }
+{ #category : #'*AI-LinearAlgebraDataStructures' }
 Collection >> asAIColumnMajorMatrix [
 
 	^ self asAIMatrix: AIColumnMajorMatrix
 ]
 
-{ #category : #'*AI-LinearAlgebra' }
+{ #category : #'*AI-LinearAlgebraDataStructures' }
 Collection >> asAIMatrix [
 
 	^ self asAIRowMajorMatrix
 ]
 
-{ #category : #'*AI-LinearAlgebra' }
+{ #category : #'*AI-LinearAlgebraDataStructures' }
 Collection >> asAIMatrix: aMatrixClass [
 
 	"If I am a two-dimensional collection, return a matrix with same shape.
@@ -24,7 +24,7 @@ Collection >> asAIMatrix: aMatrixClass [
 	^ aMatrixClass values: self rows: self size columns: 1
 ]
 
-{ #category : #'*AI-LinearAlgebra' }
+{ #category : #'*AI-LinearAlgebraDataStructures' }
 Collection >> asAIRowMajorMatrix [
 
 	^ self asAIMatrix: AIRowMajorMatrix
