@@ -24,11 +24,11 @@ AIAbstractMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 ]
 
 { #category : #'instance creation' }
-AIAbstractMatrix class >> rows: rowMajorNonFlattenedMatrix [
+AIAbstractMatrix class >> rows: collectionOfRows [
 
-	^ (self newRows: rowMajorNonFlattenedMatrix size
-		columns: rowMajorNonFlattenedMatrix first size)
-			initializeRows: rowMajorNonFlattenedMatrix;
+	^ (self newRows: collectionOfRows size
+		columns: collectionOfRows first size)
+			initializeRows: collectionOfRows;
 			yourself
 ]
 
