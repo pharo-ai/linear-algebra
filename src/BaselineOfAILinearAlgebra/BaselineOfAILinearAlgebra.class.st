@@ -15,6 +15,7 @@ BaselineOfAILinearAlgebra >> baseline: spec [
 		
 		"Packages"
 		spec 
-			package: 'AI-LinearAlgebra' with: [ spec requires: #('Lapack') ];
+			package: 'AI-LinearAlgebraDataStructures';
+			package: 'AI-LinearAlgebra' with: [ spec requires: #('Lapack' 'AI-LinearAlgebraDataStructures') ];
 			package: 'AI-LinearAlgebra-Tests' with: [ spec requires: #('AI-LinearAlgebra') ] ].
 ]
