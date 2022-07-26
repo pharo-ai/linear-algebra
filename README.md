@@ -28,3 +28,7 @@ spec
   baseline: 'AILinearAlgebra'
   with: [ spec repository: 'github://pharo-ai/linear-algebra/src' ].
 ```
+
+## Why the CI is red?
+
+The repository uses [Pharo Lapack](https://github.com/pharo-ai/lapack). To be able to run Lapack, you need to have it installed in your computer. We need to find a way to install Lapack in Smalltalk CI to be able to run the tests. If you have lapack installed in your computer, you can run manually the tests. They should be green.
