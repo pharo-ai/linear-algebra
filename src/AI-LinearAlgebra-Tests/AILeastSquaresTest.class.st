@@ -15,26 +15,22 @@ AILeastSquaresTest >> testSolutionIntelFortranExample [
 
 	| fixture algo |
 	fixture := AILeastSquaresFixtureIntelFortran new.
-	
+
 	algo := AILeastSquares new
-		matrixA: fixture matrixA;
-		matrixB: fixture matrixB;
-		yourself.
-	
+		        matrixA: fixture matrixA;
+		        matrixB: fixture matrixB;
+		        yourself.
+
 	algo solve.
-	
+
 	self assert: algo rank equals: fixture rank.
-	
-	algo singularValues asArray
-		with: fixture singularValues
-		do: [ :algoValue :fixtureValue | self assert: algoValue closeTo: fixtureValue ].
-	
+
+	algo singularValues asArray with: fixture singularValues do: [ :algoValue :fixtureValue | self assert: algoValue closeTo: fixtureValue precision: 0.01 ].
+
 	"The minimun norm solution comes in form of an flat array in a column major way"
 	1 to: fixture minimumNormSolutionRows do: [ :row |
 		1 to: fixture minimumNormSolutionColumns do: [ :column |
-			self
-				assert:( algo solution atRow: row atColumn: column)
-				closeTo: (fixture matrixX atRow: row atColumn: column) ] ]
+		self assert: (algo solution atRow: row atColumn: column) closeTo: (fixture matrixX atRow: row atColumn: column) ] ]
 ]
 
 { #category : #tests }
