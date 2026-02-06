@@ -1,1 +1,1 @@
-Package { #name : #'AI-LinearAlgebraDataStructures' }
+Package { #name : 'AI-LinearAlgebraDataStructures' }

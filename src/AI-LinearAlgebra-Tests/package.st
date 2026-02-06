@@ -1,1 +1,1 @@
-Package { #name : #'AI-LinearAlgebra-Tests' }
+Package { #name : 'AI-LinearAlgebra-Tests' }

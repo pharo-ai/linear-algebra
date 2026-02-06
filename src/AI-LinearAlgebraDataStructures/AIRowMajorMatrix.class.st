@@ -7,31 +7,32 @@ As my brother, am a matrix with an internal representation that is:
 The difference is that I store the elements in a row major form, instead of a column major form
 "
 Class {
-	#name : #AIRowMajorMatrix,
-	#superclass : #AIContiguousMatrix,
-	#type : #variable,
-	#category : #'AI-LinearAlgebraDataStructures'
+	#name : 'AIRowMajorMatrix',
+	#superclass : 'AIContiguousMatrix',
+	#type : 'variable',
+	#category : 'AI-LinearAlgebraDataStructures',
+	#package : 'AI-LinearAlgebraDataStructures'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIRowMajorMatrix class >> arrayKind [
 
 	^ Array
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIRowMajorMatrix >> atRow: rowIndex atColumn: columnIndex [
 
 	^ contents at: rowIndex - 1 * numberOfColumns + columnIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIRowMajorMatrix >> atRow: rowIndex atColumn: columnIndex put: aValue [
 	
 	^ contents at: (rowIndex - 1 * numberOfColumns + columnIndex) put: aValue
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 AIRowMajorMatrix >> columnAverage [
 	
 	| resultArray |
@@ -48,19 +49,19 @@ AIRowMajorMatrix >> columnAverage [
 	^ resultArray
 ]
 
-{ #category : #'transforming - lapack' }
+{ #category : 'transforming - lapack' }
 AIRowMajorMatrix >> contentsForLapack [
 	
 	Exception signal: 'For calling LAPACK you need to use AIColumnMajorMatrix instead'
 ]
 
-{ #category : #'transforming - lapack' }
+{ #category : 'transforming - lapack' }
 AIRowMajorMatrix >> contentsForLapackOfAtLeast: size [
 
 	Exception signal: 'For calling LAPACK you need to use AIColumnMajorMatrix instead'
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 AIRowMajorMatrix >> transposed [
 
 	^ AIColumnMajorMatrix values: contents rows: numberOfColumns columns: numberOfRows

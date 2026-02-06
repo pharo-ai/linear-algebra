@@ -10,13 +10,14 @@ My #contentsForLapack method transforms my contents to a native float array.
 Internally, I use an Array.
 "
 Class {
-	#name : #AIColumnMajorMatrix,
-	#superclass : #AIContiguousMatrix,
-	#type : #variable,
-	#category : #'AI-LinearAlgebraDataStructures'
+	#name : 'AIColumnMajorMatrix',
+	#superclass : 'AIContiguousMatrix',
+	#type : 'variable',
+	#category : 'AI-LinearAlgebraDataStructures',
+	#package : 'AI-LinearAlgebraDataStructures'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIColumnMajorMatrix class >> arrayKind [
 
 	"The kind of array used by default for my internal representation"
@@ -24,25 +25,25 @@ AIColumnMajorMatrix class >> arrayKind [
 	^ Array
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIColumnMajorMatrix >> atRow: rowIndex atColumn: columnIndex [ 
 	
 	^ contents at: (columnIndex - 1 * numberOfRows) + rowIndex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIColumnMajorMatrix >> atRow: rowIndex atColumn: columnIndex put: aValue [
 	
 	^ contents at: (columnIndex - 1 * numberOfRows) + rowIndex put: aValue
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 AIColumnMajorMatrix >> columnAverage [
 	
 	^ self columnAverageIntoResultArray: (Array new: numberOfColumns withAll: 0.0)
 ]
 
-{ #category : #operating }
+{ #category : 'operating' }
 AIColumnMajorMatrix >> columnAverageIntoResultArray: resultArray [
 
 	1 to: numberOfColumns do: [ :column | 
@@ -55,7 +56,7 @@ AIColumnMajorMatrix >> columnAverageIntoResultArray: resultArray [
 	^ resultArray
 ]
 
-{ #category : #'transforming - lapack' }
+{ #category : 'transforming - lapack' }
 AIColumnMajorMatrix >> contentsForLapack [
 
 	"Take the pharo float array and transform it to a native float array"
@@ -63,7 +64,7 @@ AIColumnMajorMatrix >> contentsForLapack [
 	^ contents asFFIExternalArrayOfType: 'double'
 ]
 
-{ #category : #'transforming - lapack' }
+{ #category : 'transforming - lapack' }
 AIColumnMajorMatrix >> contentsForLapackOfAtLeast: size [
 
 	"Take the pharo float array and transform it to a native float array"
@@ -71,7 +72,7 @@ AIColumnMajorMatrix >> contentsForLapackOfAtLeast: size [
 	^ contents asFFIExternalArrayOfType: 'double' size: (contents size max: size)
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 AIColumnMajorMatrix >> transposed [
 
 	^ AIRowMajorMatrix values: contents rows: numberOfColumns columns: numberOfRows

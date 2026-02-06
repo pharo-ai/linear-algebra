@@ -1,13 +1,14 @@
 Class {
-	#name : #AIMatrixTest,
-	#superclass : #ParametrizedTestCase,
+	#name : 'AIMatrixTest',
+	#superclass : 'ParametrizedTestCase',
 	#instVars : [
 		'matrixClass'
 	],
-	#category : #'AI-LinearAlgebra-Tests'
+	#category : 'AI-LinearAlgebra-Tests',
+	#package : 'AI-LinearAlgebra-Tests'
 }
 
-{ #category : #'building suites' }
+{ #category : 'building suites' }
 AIMatrixTest class >> testParameters [
 
 	| m1 |
@@ -20,19 +21,19 @@ AIMatrixTest class >> testParameters [
 	^ m1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIMatrixTest >> matrixClass [
 
 	^ matrixClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIMatrixTest >> matrixClass: anObject [
 
 	matrixClass := anObject
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testColumnAverage [
 
 	| aiMatrix averages |
@@ -43,7 +44,7 @@ AIMatrixTest >> testColumnAverage [
 	self assert: averages asArray equals: #( 5 6 7 8 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testCreateMatrixFromRows [
 
 	| matrix |
@@ -58,7 +59,7 @@ AIMatrixTest >> testCreateMatrixFromRows [
 	self assert: (matrix atRow: 2 atColumn: 3) equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testCreateMatrixFromSizes [
 
 	| matrix |
@@ -68,7 +69,7 @@ AIMatrixTest >> testCreateMatrixFromSizes [
 	self assert: (matrix atRow: 2 atColumn: 3) equals: matrix defaultElement
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testCreateMatrixFromValues [
 
 	| matrix |
@@ -78,7 +79,7 @@ AIMatrixTest >> testCreateMatrixFromValues [
 	self assert: (matrix atRow: 2 atColumn: 3) equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testRead [
 
 	| aiMatrix |
@@ -100,7 +101,7 @@ AIMatrixTest >> testRead [
 	self assert: (aiMatrix atRow: 3 atColumn: 4) equals: 12
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testSubstractRow [
 
 	| aiMatrix |
@@ -119,7 +120,7 @@ AIMatrixTest >> testSubstractRow [
 	self assert: (aiMatrix atRow: 2 atColumn: 4) equals: 7
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testTransposed [
 
 	| aiMatrix transposedMatrix |
@@ -139,7 +140,7 @@ AIMatrixTest >> testTransposed [
 	self assert: (transposedMatrix atRow: 3 atColumn: 3) equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testTransposedNonSquaredMatrix [
 
 	| aiMatrix transposedMatrix |
@@ -162,7 +163,7 @@ AIMatrixTest >> testTransposedNonSquaredMatrix [
 	self assert: (transposedMatrix atRow: 3 atColumn: 4) equals: 12
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AIMatrixTest >> testWrite [
 
 	| aiMatrix i |
