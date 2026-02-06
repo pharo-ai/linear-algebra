@@ -6,16 +6,17 @@ Same example but calling Fortran from C:
 https://www.intel.com/content/www/us/en/develop/documentation/onemkl-lapack-examples/top/least-squares-and-eigenvalue-problems/linear-least-squares-lls-problems/gelsd-function/dgelsd-example/lapacke-dgelsd-example-c-row.html
 "
 Class {
-	#name : #AILeastSquaresFixtureIntelFortran,
-	#superclass : #AILeastSquaresFixture,
+	#name : 'AILeastSquaresFixtureIntelFortran',
+	#superclass : 'AILeastSquaresFixture',
 	#instVars : [
 		'singularValues',
 		'rank'
 	],
-	#category : #'AI-LinearAlgebra-Tests'
+	#category : 'AI-LinearAlgebra-Tests',
+	#package : 'AI-LinearAlgebra-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureIntelFortran >> initialize [
 
 	super initialize.
@@ -23,7 +24,7 @@ AILeastSquaresFixtureIntelFortran >> initialize [
 	self initializeRank
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureIntelFortran >> initializeMatrixA [
 
 	matrixA := #(
@@ -40,7 +41,7 @@ AILeastSquaresFixtureIntelFortran >> initializeMatrixA [
 		columns: 5"
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureIntelFortran >> initializeMatrixB [
 
 	matrixB := #(
@@ -57,7 +58,7 @@ AILeastSquaresFixtureIntelFortran >> initializeMatrixB [
 		columns: 3"
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureIntelFortran >> initializeMatrixX [
 
 	matrixX := #(
@@ -68,37 +69,37 @@ AILeastSquaresFixtureIntelFortran >> initializeMatrixX [
 	   #( 0.291609 0.177127 0.036823 ) ) asAIColumnMajorMatrix
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureIntelFortran >> initializeRank [
 
 	rank := 4
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureIntelFortran >> initializeSingularValues [
 
 	singularValues := #( 18.66 15.99 10.01 8.51 )
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixtureIntelFortran >> minimumNormSolutionColumns [
 
 	^ 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixtureIntelFortran >> minimumNormSolutionRows [
 
 	^ 5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixtureIntelFortran >> rank [
 
 	^ rank
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixtureIntelFortran >> singularValues [
 
 	^ singularValues

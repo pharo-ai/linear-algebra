@@ -1,16 +1,17 @@
 Class {
-	#name : #AILeastSquaresTest,
-	#superclass : #TestCase,
-	#category : #'AI-LinearAlgebra-Tests'
+	#name : 'AILeastSquaresTest',
+	#superclass : 'TestCase',
+	#category : 'AI-LinearAlgebra-Tests',
+	#package : 'AI-LinearAlgebra-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresTest class >> defaultPrecisionsForCloseToComparison [
 
 	^ 0.01
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AILeastSquaresTest >> testSolutionIntelFortranExample [
 
 	| fixture algo |
@@ -30,10 +31,10 @@ AILeastSquaresTest >> testSolutionIntelFortranExample [
 	"The minimun norm solution comes in form of an flat array in a column major way"
 	1 to: fixture minimumNormSolutionRows do: [ :row |
 		1 to: fixture minimumNormSolutionColumns do: [ :column |
-		self assert: (algo solution atRow: row atColumn: column) closeTo: (fixture matrixX atRow: row atColumn: column) ] ]
+		self assert: (algo solution atRow: row atColumn: column) closeTo: (fixture matrixX atRow: row atColumn: column) precision: 0.01 ] ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AILeastSquaresTest >> testSolutionSmallExampleOneSolution [
 
 	| fixture algo |
@@ -46,5 +47,5 @@ AILeastSquaresTest >> testSolutionSmallExampleOneSolution [
 		
 	algo solve.
 	
-	self assert: algo solution equals: fixture matrixX
+	self assert: (algo solution equals: fixture matrixX precision: 0.000000001)
 ]

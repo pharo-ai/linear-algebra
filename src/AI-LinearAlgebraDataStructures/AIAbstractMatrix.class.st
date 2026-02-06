@@ -6,24 +6,25 @@ My concrete subclasses should implement mainly the methods:
  - #contentsForLapack => returns the matrix in lapack's representation (contiguous column-major native float array)
 "
 Class {
-	#name : #AIAbstractMatrix,
-	#superclass : #Object,
-	#category : #'AI-LinearAlgebraDataStructures'
+	#name : 'AIAbstractMatrix',
+	#superclass : 'Object',
+	#category : 'AI-LinearAlgebraDataStructures',
+	#package : 'AI-LinearAlgebraDataStructures'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 AIAbstractMatrix class >> isAbstract [
 
 	^ self == AIAbstractMatrix
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AIAbstractMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 
 	self subclassResponsibility
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AIAbstractMatrix class >> rows: collectionOfRows [
 
 	^ (self newRows: collectionOfRows size
@@ -32,7 +33,7 @@ AIAbstractMatrix class >> rows: collectionOfRows [
 			yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AIAbstractMatrix class >> values: rowMajorNonFlattenedMatrix rows: aNumberOfRows columns: aNumberOfColumns [
 
 	| rows index |
@@ -46,31 +47,31 @@ AIAbstractMatrix class >> values: rowMajorNonFlattenedMatrix rows: aNumberOfRows
 		  yourself
 ]
 
-{ #category : #operating }
+{ #category : 'operating' }
 AIAbstractMatrix >> -= aCollection [ 
 	
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIAbstractMatrix >> atRow: rowIndex atColumn: columnIndex [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIAbstractMatrix >> atRow: rowIndex atColumn: columnIndex put: value [
 
 	self subclassResponsibility
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 AIAbstractMatrix >> columnAverage [
 
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AIAbstractMatrix >> initializeRows: aCollectionOfCollections [
 
 	aCollectionOfCollections withIndexCollect: [ :row :rowIndex | 
@@ -78,7 +79,7 @@ AIAbstractMatrix >> initializeRows: aCollectionOfCollections [
 			self atRow: rowIndex atColumn: columnIndex put: value ] ]
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 AIAbstractMatrix >> transposed [
 
 	^ self subclassResponsibility

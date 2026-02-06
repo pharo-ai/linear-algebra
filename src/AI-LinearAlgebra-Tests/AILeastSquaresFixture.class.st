@@ -2,17 +2,18 @@
 I am the abstract class for the fixture example for testing lapack least squares algorithm
 "
 Class {
-	#name : #AILeastSquaresFixture,
-	#superclass : #Object,
+	#name : 'AILeastSquaresFixture',
+	#superclass : 'Object',
 	#instVars : [
 		'matrixA',
 		'matrixB',
 		'matrixX'
 	],
-	#category : #'AI-LinearAlgebra-Tests'
+	#category : 'AI-LinearAlgebra-Tests',
+	#package : 'AI-LinearAlgebra-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixture >> initialize [
 
 	super initialize.
@@ -21,37 +22,37 @@ AILeastSquaresFixture >> initialize [
 	self initializeMatrixX
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixture >> initializeMatrixA [
 
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixture >> initializeMatrixB [
 
 	self subclassResponsibility
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixture >> initializeMatrixX [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixture >> matrixA [
 
 	^ matrixA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixture >> matrixB [
 
 	^ matrixB
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixture >> matrixX [
 
 	^ matrixX

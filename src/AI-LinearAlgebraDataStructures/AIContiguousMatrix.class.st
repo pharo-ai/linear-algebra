@@ -5,18 +5,19 @@ I implement the main accessing and manipulation methods.
 See my superclass for more details
 "
 Class {
-	#name : #AIContiguousMatrix,
-	#superclass : #AIAbstractMatrix,
-	#type : #variable,
+	#name : 'AIContiguousMatrix',
+	#superclass : 'AIAbstractMatrix',
+	#type : 'variable',
 	#instVars : [
 		'numberOfRows',
 		'numberOfColumns',
 		'contents'
 	],
-	#category : #'AI-LinearAlgebraDataStructures'
+	#category : 'AI-LinearAlgebraDataStructures',
+	#package : 'AI-LinearAlgebraDataStructures'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIContiguousMatrix class >> arrayKind [
 
 	"The kind of array used by default for my internal representation"
@@ -24,13 +25,13 @@ AIContiguousMatrix class >> arrayKind [
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 AIContiguousMatrix class >> isAbstract [
 
 	^ self == AIContiguousMatrix
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AIContiguousMatrix class >> newContents: flattenedMatrix rows: numberOfRows columns: numberOfColumns [
 
 	^ self new
@@ -40,7 +41,7 @@ AIContiguousMatrix class >> newContents: flattenedMatrix rows: numberOfRows colu
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AIContiguousMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 
 	^ self
@@ -49,7 +50,7 @@ AIContiguousMatrix class >> newRows: aNumberOfRows columns: aNumberOfColumns [
 		columns: aNumberOfColumns
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AIContiguousMatrix class >> values: flattenedMatrix rows: aNumberOfRows columns: aNumberOfColumns [
 
 	^ self
@@ -58,7 +59,7 @@ AIContiguousMatrix class >> values: flattenedMatrix rows: aNumberOfRows columns:
 		columns: aNumberOfColumns
 ]
 
-{ #category : #operating }
+{ #category : 'operating' }
 AIContiguousMatrix >> -= aCollection [ 
 	
 	"Assume a collection is a matrix of one row"
@@ -70,17 +71,13 @@ AIContiguousMatrix >> -= aCollection [
 	]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 AIContiguousMatrix >> = aMatrix [
 
-	self class = aMatrix class ifFalse: [ ^ false ].
-	^ contents = aMatrix contents
-		and: [ numberOfRows = aMatrix numberOfRows
-			and: [ numberOfColumns = aMatrix numberOfColumns ] ]
-		
+	^ self equals: aMatrix precision: 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIContiguousMatrix >> atRow: row [
 
 	"Returns the row"
@@ -88,31 +85,31 @@ AIContiguousMatrix >> atRow: row [
 	^ (1 to: numberOfColumns) collect: [ :column | self atRow: row atColumn: column ]
 ]
 
-{ #category : #'accessing - private' }
+{ #category : 'accessing - private' }
 AIContiguousMatrix >> contents [
 
 	^ contents
 ]
 
-{ #category : #'accessing - private' }
+{ #category : 'accessing - private' }
 AIContiguousMatrix >> contents: anObject [
 
 	contents := anObject
 ]
 
-{ #category : #'transforming - lapack' }
+{ #category : 'transforming - lapack' }
 AIContiguousMatrix >> contentsForLapack [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'transforming - lapack' }
+{ #category : 'transforming - lapack' }
 AIContiguousMatrix >> contentsForLapackOfAtLeast: size [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'private - accessing' }
+{ #category : 'private - accessing' }
 AIContiguousMatrix >> defaultElement [
 
 	"I'm made of normal arrays initialized in nil"
@@ -120,13 +117,29 @@ AIContiguousMatrix >> defaultElement [
 	^ nil
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
+AIContiguousMatrix >> equals: aMatrix precision: precision [
+
+	self class = aMatrix class ifFalse: [ ^ false ].
+	(numberOfRows ~= aMatrix numberOfRows
+		or: [ numberOfColumns ~= aMatrix numberOfColumns ])
+			ifTrue: [ ^ false ].
+
+	1 to: contents size do: [ :index |
+		((contents at: index)
+			closeTo: (aMatrix contents at: index)
+			precision: precision)
+				ifFalse: [ ^ false ] ].
+	^ true
+]
+
+{ #category : 'comparing' }
 AIContiguousMatrix >> hash [
 
 	^ contents hash bitXor: (numberOfRows hash bitXor: numberOfColumns hash)
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 AIContiguousMatrix >> inspectorExtension [
 
 	<inspectorPresentationOrder: 0 title: 'Matrix'>
@@ -149,25 +162,25 @@ AIContiguousMatrix >> inspectorExtension [
 	^ specTable 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIContiguousMatrix >> numberOfColumns [
 
 	^ numberOfColumns
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIContiguousMatrix >> numberOfColumns: anObject [
 
 	numberOfColumns := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIContiguousMatrix >> numberOfRows [
 
 	^ numberOfRows
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AIContiguousMatrix >> numberOfRows: anObject [
 
 	numberOfRows := anObject

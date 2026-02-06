@@ -12,38 +12,39 @@ My #contentsForLapack method returns just my contents without any manipulation.
 Internally, I use a Float64Array.
 "
 Class {
-	#name : #AINativeFloatMatrix,
-	#superclass : #AIColumnMajorMatrix,
-	#type : #variable,
-	#category : #'AI-LinearAlgebraDataStructures'
+	#name : 'AINativeFloatMatrix',
+	#superclass : 'AIColumnMajorMatrix',
+	#type : 'variable',
+	#category : 'AI-LinearAlgebraDataStructures',
+	#package : 'AI-LinearAlgebraDataStructures'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AINativeFloatMatrix class >> arrayKind [
 	"The kind of array used by default for my internal representation"
 	^ Float64Array
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 AINativeFloatMatrix >> columnAverage [
 	
 	^ self columnAverageIntoResultArray: (Float64Array new: numberOfColumns)
 ]
 
-{ #category : #'transforming - lapack' }
+{ #category : 'transforming - lapack' }
 AINativeFloatMatrix >> contentsForLapack [
 
 	^ contents
 ]
 
-{ #category : #'transforming - lapack' }
+{ #category : 'transforming - lapack' }
 AINativeFloatMatrix >> contentsForLapackOfAtLeast: size [
 
 	contents size < size ifTrue: [ self notYetImplemented ].
 	^ self contentsForLapack
 ]
 
-{ #category : #'private - accessing' }
+{ #category : 'private - accessing' }
 AINativeFloatMatrix >> defaultElement [
 
 	"I'm made of Float arrays initialized in 0.0"

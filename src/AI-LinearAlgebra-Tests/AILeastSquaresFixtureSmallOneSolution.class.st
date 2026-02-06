@@ -2,36 +2,37 @@
 Small example of least squares system (AX = B) with one solution taken from here: https://textbooks.math.gatech.edu/ila/least-squares.html
 "
 Class {
-	#name : #AILeastSquaresFixtureSmallOneSolution,
-	#superclass : #AILeastSquaresFixture,
-	#category : #'AI-LinearAlgebra-Tests'
+	#name : 'AILeastSquaresFixtureSmallOneSolution',
+	#superclass : 'AILeastSquaresFixture',
+	#category : 'AI-LinearAlgebra-Tests',
+	#package : 'AI-LinearAlgebra-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixA [
 
 	matrixA := AIColumnMajorMatrix rows: #( #( 0 1.1 ) #( 1 0 ) #( 0 -0.2 ) )
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixB [
 
 	matrixB := AIColumnMajorMatrix values: #( 1.1 -1.1 -0.2 ) rows: 3 columns: 1
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AILeastSquaresFixtureSmallOneSolution >> initializeMatrixX [
 
 	matrixX := AIColumnMajorMatrix values: #( -1.1 1 ) rows: 2 columns: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixtureSmallOneSolution >> minimumNormSolutionColumns [
 
 	^ 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AILeastSquaresFixtureSmallOneSolution >> minimumNormSolutionRows [
 
 	^ 2
